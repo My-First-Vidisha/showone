@@ -7,7 +7,7 @@ pipeline {
      YOUR_DOCKERHUB_USERNAME = "dineshdocker3246"
 	   
      DOCKERHUB_CREDENTIALS = credentials('DocJenkins')
-     SERVICE_NAME = "ui"
+     SERVICE_NAME = "showone"
      REPOSITORY_TAG="${YOUR_DOCKERHUB_USERNAME}/${SERVICE_NAME}:${BUILD_ID}"
      
         PROJECT_ID = 'ace-cycling-405314'
