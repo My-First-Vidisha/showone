@@ -11,7 +11,7 @@ pipeline {
      REPOSITORY_TAG="${YOUR_DOCKERHUB_USERNAME}/${SERVICE_NAME}:${BUILD_ID}"
      
         PROJECT_ID = 'ace-cycling-405314'
-        CLUSTER_NAME = 'cluster-20'
+        CLUSTER_NAME = 'cluster-15'
         LOCATION = 'us-central1-c'
         CREDENTIALS_ID = 'mu-kube'
    }
@@ -20,7 +20,7 @@ pipeline {
       stage('Preparation') {
          steps {
             cleanWs()
-             git credentialsId: 'Myajenkins', url: "https://github.com/somkuwardinesh/ui"
+             git credentialsId: 'Myajenkins', url: "https://github.com/My-First-Vidisha/showone"
 		  sh 'ls -l'
 		  sh 'cat Dockerfile'
 		sh 'echo ${WORKSPACE}'
@@ -49,8 +49,8 @@ pipeline {
 
        stage('Deploy to GKE') {
             steps{
-                sh "sed -i 's/ui:latest/ui:${env.BUILD_ID}/g' showone.yaml"
-                step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'test-105-ui.yaml', credentialsId: env.CREDENTIALS_ID, verifyDeployments: true])
+                sh "sed -i 's/showone:latest/showone:${env.BUILD_ID}/g' showone.yaml"
+                step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'showone.yaml', credentialsId: env.CREDENTIALS_ID, verifyDeployments: true])
             }
         }
    }
