@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+spec:
+  selector:
+    matchLabels:
+      app: frontend
+  replicas: 1
+  template: # template for the pods
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+      - name: frontend
+        image: dineshdocker3246/ui:latest
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: first-frontend
+
+spec:
+  selector:
+    app: frontend
+
+  ports:
+    - name: http
+      port: 80
+
+  type: LoadBalancer
+

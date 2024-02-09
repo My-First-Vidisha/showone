@@ -1,0 +1,40 @@
+<p>shower works!</p>
+
+<h1>Welcome to out App!!!! ....  {{title}} </h1>
+
+
+
+<!-- <button type="button" class="btn btn-outline-primary">First</button>
+<button type="button" class="btn btn-outline-secondary">Second</button>
+<button type="button" class="btn btn-outline-success">Fisrt-Second</button> -->
+
+
+
+
+
+<form class="row g-3">
+  <div class="col-auto">
+    <label for="inputPassword2" class="visually-hidden">First</label>
+    <input type="text" value="{{first}}"  class="form-control" id="inputPassword2" placeholder="">
+  </div>
+  <div class="col-auto">
+    <button type="button" (click)="getFisrt()" class="btn btn-primary mb-3">First</button>
+  </div>
+
+  <div class="col-auto">
+    <label for="inputPassword2" class="visually-hidden">Second</label>
+    <input type="text" value="{{second}}" class="form-control" id="inputPassword3" placeholder="">
+  </div>
+  <div class="col-auto">
+    <button type="button" (click)="getSecond()" class="btn btn-primary mb-3">Second</button>
+  </div>
+
+  <div class="col-auto">
+    <label for="inputPassword2" class="visually-hidden">Fisrt-Second</label>
+    <input type="text" value="{{firstSecond}}" class="form-control" id="inputPassword4" placeholder="">
+  </div>
+
+  <div class="col-auto">
+    <button type="button" (click)="getFisrtSecond()" class="btn btn-primary mb-3">Fisrt-Second</button>
+  </div>
+</form>
