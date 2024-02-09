@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  API_URL: 'http://http://api:8080',
+  API_URL: 'http://api:8080',
   MESG: 'Local Testing',
 };
 
