@@ -1,6 +1,6 @@
 {
     "/api/*": {
-        "target": "http://backend",
+        "target": "http://backend:80",
         "secure": false,
         "logLevel": "debug"
     }
