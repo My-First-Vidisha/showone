@@ -44,7 +44,7 @@ export class ShowerComponent {
   .set('Access-Control-Allow-Methods', 'GET')
   .set('Access-Control-Allow-Origin', '*');
 
-    this.http.post<any>(this.baseURL+"/api/auth/signin", this.loginRequest)
+    this.http.post<any>(this.baseURL+"/api/auth/signin", this.loginRequest, { 'headers': this.headers })
     .subscribe((response: any) => {
       this.token = response.token;
       console.log('Login Response :' + response.username);
