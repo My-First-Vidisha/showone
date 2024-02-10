@@ -2,10 +2,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Observable, catchError, map, of, retry, shareReplay } from 'rxjs';
 import { environment } from 'src/environments/environment';
-const headers = new HttpHeaders()
-  .set('content-type', 'application/json')
-  .set('Access-Control-Allow-Methods', 'GET')
-  .set('Access-Control-Allow-Origin', '*');
+
+
+
   // .set('Access-Control-Allow-Credentials', 'true')
   // .set('Access-Control-Allow-Headers', 'Origin, Content-Type, Accept, Authorization, X- Request-With');
 
@@ -22,12 +21,36 @@ export class ShowerComponent {
   first: string = ''
   second: string = ''
   firstSecond: string = ''
+  headers:any;
+  token:string='';
+
+  loginRequest:any= {
+    "username": "dinesh",
+    "password": "dinesh@123"
+  }
 
   constructor(  private http: HttpClient, ) {
     this.baseURL = environment.API_URL
   }
 
 
+  login(){
+
+
+    console.log('I am in LOGIN')
+
+    this.headers = new HttpHeaders()
+  .set('content-type', 'application/json')
+  .set('Access-Control-Allow-Methods', 'GET')
+  .set('Access-Control-Allow-Origin', '*');
+
+    this.http.post<any>(this.baseURL+"/api/auth/signin", this.loginRequest)
+    .subscribe((response: any) => {
+      this.token = response.token;
+      console.log('Login Response :' + response.username);
+    });
+
+  }
   getFisrt(){
     console.log('I am in first')
     this.getMessage("/api/first")
@@ -59,7 +82,7 @@ export class ShowerComponent {
   }
 
   getFisrtSecond(){
-    this.getMessage("/api/first-second")
+    this.getMessage("/api/firstsecond")
     .subscribe({
       next: response =>{
          console.log(response); 
@@ -73,8 +96,28 @@ export class ShowerComponent {
   }
 
   getMessage(url:string): Observable<any> {
+
+
+    let tt:string;
+
+    this.http.post<any>(this.baseURL+"/api/auth/signin", this.loginRequest)
+    .subscribe((response: any) => {
+      this.token= response.token;
+      console.log('Login Response :' + response.username);
+      console.log('Login Response :' + response.token);
+    });
+
+    console.log("token  : "+this.token)
+    this.token = "Bearer " +this.token  
+    console.log("main api call>> ")
+    console.log("token  : "+this.token)
+    this.headers = new HttpHeaders()
+  .set('content-type', 'application/json')
+  .set('Authorization', this.token)
+  .set('Access-Control-Allow-Methods', 'GET')
+  .set('Access-Control-Allow-Origin', '*');
     console.log(this.baseURL + url)
-    return this.http.get<any>(this.baseURL + url, { 'headers': headers }).pipe(
+    return this.http.get<any>(this.baseURL + url, { 'headers': this.headers }).pipe(
       shareReplay({ bufferSize: 1, refCount: false }),//need to check more
       map((res: any) => {
         // throw new Error('Value expected!');
