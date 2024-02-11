@@ -41,7 +41,7 @@ export class ShowerComponent {
 
     this.headers = new HttpHeaders()
   .set('content-type', 'application/json')
-  .set('Access-Control-Allow-Methods', 'GET')
+  .set('Access-Control-Allow-Methods', 'POST')
   .set('Access-Control-Allow-Origin', '*');
 
     this.http.post<any>(this.baseURL+"/api/auth/signin", this.loginRequest, { 'headers': this.headers })
