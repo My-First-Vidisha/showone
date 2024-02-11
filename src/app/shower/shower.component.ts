@@ -42,10 +42,8 @@ export class ShowerComponent {
     this.headers = new HttpHeaders()
   .set('content-type', 'application/json')
   .set('Access-Control-Allow-Methods', 'POST')
-  .set('Access-Control-Allow-Origin', 'http://backend')
-  .set('Access-Control-Allow-Credentials', 'true')
-  .set('Access-Control-Allow-Origin', 'http://backend')
-  .set('Access-Control-Allow-Origin', 'http://backend');
+  .set('Access-Control-Allow-Origin', 'http://34.80.110.10')
+  .set('Access-Control-Allow-Credentials', 'true');
 
     this.http.post<any>(this.baseURL+"/api/auth/signin", this.loginRequest, { 'headers': this.headers })
     .subscribe((response: any) => {
@@ -117,8 +115,9 @@ export class ShowerComponent {
     this.headers = new HttpHeaders()
   .set('content-type', 'application/json')
   .set('Authorization', this.token)
-  .set('Access-Control-Allow-Methods', 'GET')
-  .set('Access-Control-Allow-Origin', '*');
+  .set('Access-Control-Allow-Methods', 'GET')  
+  .set('Access-Control-Allow-Origin', 'http://34.80.110.10')
+  .set('Access-Control-Allow-Credentials', 'true');
     console.log(this.baseURL + url)
     return this.http.get<any>(this.baseURL + url, { 'headers': this.headers }).pipe(
       shareReplay({ bufferSize: 1, refCount: false }),//need to check more

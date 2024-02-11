@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  API_URL: 'http://backend',
-  // API_URL: 'http://35.201.133.187:8080',
+  // API_URL: 'http://backend',
+  API_URL: 'http://34.80.110.10', 
   MESG: 'Local Testing',
 };
 
